@@ -1,0 +1,65 @@
+[gd_scene format=1]
+
+[node name="hud" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1024.0
+margin/bottom = 600.0
+
+[node name="throttleIndicator" type="ProgressBar" parent="."]
+
+rect/rotation = 90.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 40.0
+margin/top = 560.0
+margin/right = 168.0
+margin/bottom = 600.0
+range/min = 0.0
+range/max = 1.0
+range/step = 1.0
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+percent/visible = false
+
+[node name="sasIndicator" type="CheckBox" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 40.0
+margin/top = 408.0
+margin/right = 66.0
+margin/bottom = 432.0
+toggle_mode = true
+enabled_focus_mode = 0
+shortcut = null
+flat = false
+align = 0
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 66.0
+margin/top = 413.0
+margin/right = 106.0
+margin/bottom = 427.0
+text = "SAS"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+
