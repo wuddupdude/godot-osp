@@ -1,4 +1,4 @@
-extends Button
+extends Node
 
 # Note: This can be called from anywhere inside the tree.
 # This function is path independent.
@@ -20,7 +20,9 @@ func load_game():
 		currentline.parse_json(savegame.get_line())
 		# First we need to create the object and add it to the tree and set its position.
 		var newobject = load(currentline["filename"]).instance()
-		get_node(currentline["parent"]).add_child(newobject)
+		#get_node(currentline["parent"]).add_child(newobject)
+		add_child(newobject)
+		newobject.set_mode(0)
 		newobject.set_pos(Vector2(currentline["posx"],currentline["posy"]))
 		# Now we set the remaining variables.
 		for i in currentline.keys():
@@ -29,16 +31,7 @@ func load_game():
 			newobject.set(i, currentline[i])
 	savegame.close()
 
-func _button_pressed():
-    get_tree().change_scene("res://space/space.tscn")
-
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
-	set_process_unhandled_input(true)
-
-func _unhandled_input(event):
-	if self.is_pressed():
-		_button_pressed()
-		load_game()
-		
+	load_game()
