@@ -39,6 +39,8 @@ func _draw():
 # Save the node positions.
 func save():
 	var savedict = {
+		filename=get_filename(),
+		parent=get_parent().get_path(),
 		posx=get_pos().x,
 		posy=get_pos().y
 	}

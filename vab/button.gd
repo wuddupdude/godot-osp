@@ -1,20 +1,21 @@
 extends Button
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
-
-# Note: This can be called from anywhere inside the tree.  This function is path independent.
+# Note: This can be called from anywhere inside the tree.
+# This function is path independent.
 func load_game():
-	print("lod")
+	print("fuck")
+	
 	var savegame = File.new()
-	if !savegame.file_exists("user://savegamed.save"):
+	if !savegame.file_exists("user://savegame.save"):
+		print("shit")
 		return #Error!  We don't have a save to load
 
     # We need to revert the game state so we're not cloning objects during loading.  This will vary wildly depending on the needs of a project, so take care with this step.
     # For our example, we will accomplish this by deleting savable objects.
 	var savenodes = get_tree().get_nodes_in_group("rocket_group")
+	print(savenodes)
 	for i in savenodes:
+		print(i)
 		i.queue_free()
 
     # Load the file line by line and process that dictionary to restore the object it represents
@@ -34,7 +35,7 @@ func load_game():
 	savegame.close()
 
 func _button_pressed():
-    get_tree().change_scene("res:///rocket/rocket.tscn")
+    get_tree().change_scene("res://space/space.tscn")
 
 func _ready():
 	# Called every time the node is added to the scene.
