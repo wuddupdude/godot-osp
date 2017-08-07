@@ -29,13 +29,6 @@ func highest_y_coord():
 				ymin = y
 	return ymin
 
-# Draw the RayCast2D.
-func _draw():
-	var from = Vector2(0.0, lowest_y_coord())
-	var to = Vector2(0.0, lowest_y_coord() + ray_size)
-	var color = Color(1.0, 1.0, 1.0)
-	draw_line(from, to, color)
-
 # Save the node positions.
 func save():
 	var savedict = {
@@ -59,10 +52,35 @@ func _on_mouse_enter():
 func _on_mouse_exit():
 	is_touched = false
 
+var is_held = false
+
+
 func _unhandled_input(event):
-	if is_touched == true:
-		if Input.is_mouse_button_pressed(BUTTON_LEFT):
-			set_global_pos(get_global_mouse_pos())
+	# if is_touched == true:
+	# 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+	# 		butthole = true
+	# 		set_pos(get_global_mouse_pos())
+	# if is_held == false:
+	# 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+	# 		is_held = true
+	# if is_held == true and Input.is_mouse_button_pressed(BUTTON_LEFT):
+	# if is_held == true:
+	# 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+	# 		is_held = false
+	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		if is_touched == true and is_held == false:
+			is_held = true
+		else:
+			is_held = false
+	if is_held == true:
+		set_pos(get_global_mouse_pos())
+		# is_held = false
+	# 	# set_pos(get_global_mouse_pos())
+		# if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		# 	is_held = false
+	# if butthole == true and Input.is_mouse_button_pressed(BUTTON_LEFT):
+	# 	butthole = false
+	print(is_held)
 
 func _ready():
 	set_mode(MODE_STATIC)
