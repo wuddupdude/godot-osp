@@ -46,45 +46,45 @@ func save():
 # Is the mouse pointer touching the part?
 var is_touched = false
 
+# Is the part being held?
+var is_held = false
+
+# Callback when mouse pointer enters the part.
 func _on_mouse_enter():
 	is_touched = true
 
+# Callback when mouse pointer exits the part.
 func _on_mouse_exit():
 	is_touched = false
 
-var is_held = false
+func _on_part_is_held():
+	get_node("Nodes").is_held = true
 
+func _on_part_is_not_held():
+	get_node("Nodes").is_held = false
+
+signal is_held
+
+signal is_not_held
 
 func _unhandled_input(event):
-	# if is_touched == true:
-	# 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
-	# 		butthole = true
-	# 		set_pos(get_global_mouse_pos())
-	# if is_held == false:
-	# 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
-	# 		is_held = true
-	# if is_held == true and Input.is_mouse_button_pressed(BUTTON_LEFT):
-	# if is_held == true:
-	# 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
-	# 		is_held = false
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		if is_touched == true and is_held == false:
+			# emit_signal("is_held")
+			get_node("Nodes").is_held = true
 			is_held = true
 		else:
+			# emit_signal("is_not_held")
+			get_node("Nodes").is_held = false
 			is_held = false
 	if is_held == true:
 		set_pos(get_global_mouse_pos())
-		# is_held = false
-	# 	# set_pos(get_global_mouse_pos())
-		# if Input.is_mouse_button_pressed(BUTTON_LEFT):
-		# 	is_held = false
-	# if butthole == true and Input.is_mouse_button_pressed(BUTTON_LEFT):
-	# 	butthole = false
-	print(is_held)
 
 func _ready():
 	set_mode(MODE_STATIC)
 	set_pickable(true)
+	# connect("is_held", self, "_on_part_is_held")
+	# connect("is_not_held", self, "_on_part_is_not_held")
 	connect("mouse_enter", self, "_on_mouse_enter")
 	connect("mouse_exit", self, "_on_mouse_exit")
 	set_process_unhandled_input(true)
@@ -93,16 +93,16 @@ func _ready():
 	# Good Code End
 	###############
 
-	get_node("DownRay").add_exception(self)
-	get_node("DownRay").set_enabled(true)
-	get_node("DownRay").set_cast_to(Vector2(0.0, lowest_y_coord() + 50.0))
-	set_process(true)
-
-func _process(delta):
-	#if Input.is_mouse_button_pressed(BUTTON_LEFT):
-		#pass
-	if get_node("DownRay").is_colliding():
-		var potential_add = get_node("DownRay").get_collider()
-		potential_add.set_pos(Vector2(get_pos().x, get_pos().y + lowest_y_coord() - potential_add.highest_y_coord()))
-		get_node("PinJoint2D").set_node_a(self.get_path())
-		get_node("PinJoint2D").set_node_b(potential_add.get_path())
+# 	get_node("DownRay").add_exception(self)
+# 	get_node("DownRay").set_enabled(true)
+# 	get_node("DownRay").set_cast_to(Vector2(0.0, lowest_y_coord() + 50.0))
+# 	set_process(true)
+#
+# func _process(delta):
+# 	#if Input.is_mouse_button_pressed(BUTTON_LEFT):
+# 		#pass
+# 	if get_node("DownRay").is_colliding():
+# 		var potential_add = get_node("DownRay").get_collider()
+# 		potential_add.set_pos(Vector2(get_pos().x, get_pos().y + lowest_y_coord() - potential_add.highest_y_coord()))
+# 		get_node("PinJoint2D").set_node_a(self.get_path())
+# 		get_node("PinJoint2D").set_node_b(potential_add.get_path())

@@ -11,9 +11,3 @@ func _ready():
 	set_z(-1)
 	set_trigger(true)
 	get_shape().set_radius(radius)
-	set_fixed_process(true)
-
-func _fixed_process(delta):
-	var space_state = get_world_2d().get_direct_space_state()
-	#print(space_state.get_rest_info(get_shape()))
-	
