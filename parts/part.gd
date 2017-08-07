@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-# The points of the collision polygon.
-onready var points = get_node("CollisionPolygon2D").get_polygon() # Vector2Array
+# The points of the part's CollisionPolygon2D.
+onready var points = get_node("CollisionPolygon2D").get_polygon()
 
 # The size of the RayCast2D.
 var ray_size = 50.0 # px

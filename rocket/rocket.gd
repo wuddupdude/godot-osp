@@ -7,10 +7,10 @@ export(NodePath) var hudPath
 onready var exhaust = get_node("Exhaust")
 
 # Throttle indicator.
-onready var throttleIndicator = get_node(hudPath).get_node("throttleIndicator")
+#onready var throttleIndicator = get_node(hudPath).get_node("throttleIndicator")
 
 # SAS indicator.
-onready var sasIndicator = get_node(hudPath).get_node("sasIndicator")
+#onready var sasIndicator = get_node(hudPath).get_node("sasIndicator")
 
 # The torque applied for yaw control.
 var yawTorque = 25000
@@ -92,7 +92,7 @@ func handleThrottleInput(delta):
 	if Input.is_action_pressed("throttleMin"):
 		throttle = 0
 	throttle = clamp(throttle, 0, 1)
-	throttleIndicator.set_value(throttle)
+	#throttleIndicator.set_value(throttle)
 
 # Draw the direction of the ingition force.
 # func _draw():
@@ -108,6 +108,7 @@ func _ready():
 	set_fixed_process(true)
 
 func _fixed_process(delta):
+	print(get_colliding_bodies())
 	handleThrottleInput(delta)
 	ignite(delta)
 	yaw(delta)

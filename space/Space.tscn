@@ -21,6 +21,8 @@ texture = ExtResource( 2 )
 
 [node name="Rocket" parent="." instance=ExtResource( 4 )]
 
+contacts_reported = 5
+contact_monitor = true
 hudPath = NodePath("../hud")
 
 [node name="hud" parent="." instance=ExtResource( 5 )]
