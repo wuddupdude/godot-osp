@@ -1,26 +1,19 @@
 extends Area2D
 
-onready var is_held = get_parent().is_held
-
-func _on_area_enter(area):
-	if is_held == true:
-		print(area.get_global_pos())
-
+# Callback whenever nodes contact.
 func _on_area_enter_shape(area_id, area, area_shape, self_shape):
-	if is_held == true:
-		print(area_id)
-		print(area.get_child(area_shape).get_pos())
-		print(area_shape)
-		print(self_shape)
-
-func _on_part_is_held():
-	print("true")
+	# We are only concerned about the part being held.
+	if get_parent().is_held == true:
+		# The position of the static part's node.
+		var to = area.get_child(area_shape).get_global_pos()
+		# the position of the held part's node.
+		var from = get_child(self_shape).get_global_pos()
+		# The vector distance the part has to travel to snap.
+		var snap_vector = to - from
+		# Snap the part.
+		get_parent().translate(snap_vector)
+		# Turn off mouse holding.
+		get_parent().is_held = false
 
 func _ready():
-	set_process(true)
-	# connect("area_enter", self, "_on_area_enter")
 	connect("area_enter_shape", self, "_on_area_enter_shape")
-
-func _process(delta):
-	pass
-	#print(get_overlapping_bodies())

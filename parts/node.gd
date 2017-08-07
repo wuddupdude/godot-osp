@@ -1,7 +1,7 @@
 extends CollisionShape2D
 
 # The radius of a node.
-var radius = 5 # px
+var radius = 2 # px
 
 # Draw the node.
 func _draw():
