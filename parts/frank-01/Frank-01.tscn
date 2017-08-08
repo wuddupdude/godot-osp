@@ -56,13 +56,6 @@ polygon = Vector2Array( 8, 49.5, -8, 49.5, -8, -49.5, 8, -49.5 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
-[node name="DownRay" type="RayCast2D" parent="."]
-
-enabled = true
-cast_to = Vector2( 0, 99.5 )
-layer_mask = 1
-type_mask = 15
-
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 
 node_a = NodePath("")

@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://parts/part.gd" type="Script" id=1]
 [ext_resource path="res://parts/nosecone/nosecone.png" type="Texture" id=2]
 [ext_resource path="res://parts/nodes.gd" type="Script" id=3]
+[ext_resource path="res://parts/node.gd" type="Script" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 8, 9, 8, 22, -8, 22, -8, 9, -6, -2, 0, -22, 6, -2 )
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 10.0
 
 [node name="Nosecone" type="RigidBody2D"]
 
@@ -45,13 +51,6 @@ polygon = Vector2Array( 8, 9, 8, 22, -8, 22, -8, 9, -6, -2, 0, -22, 6, -2 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
-[node name="DownRay" type="RayCast2D" parent="."]
-
-enabled = false
-cast_to = Vector2( 0, 50 )
-layer_mask = 1
-type_mask = 15
-
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 
 node_a = NodePath("")
@@ -63,10 +62,21 @@ softness = 0.0
 [node name="Nodes" type="Area2D" parent="."]
 
 input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 22 )
+shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 3 )
+
+[node name="Bottom" type="CollisionShape2D" parent="Nodes"]
+
+transform/pos = Vector2( 0, 22 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+script/script = ExtResource( 4 )
 
 

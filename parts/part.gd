@@ -26,8 +26,10 @@ func _ready():
 func _unhandled_input(event):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		if is_touched == true and is_held == false:
+			set_layer_mask(2)
 			is_held = true
 		else:
+			set_layer_mask(1)
 			is_held = false
 	if is_held == true:
 		set_pos(get_global_mouse_pos())

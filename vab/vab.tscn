@@ -22,7 +22,8 @@ transform/pos = Vector2( 208.04, 211.822 )
 "rocket_group",
 ] instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 149.14, 67.5453 )
+transform/pos = Vector2( 141.809, 75.6904 )
+mode = 0
 
 [node name="Nosecone" parent="." groups=[
 "rocket_group",
@@ -34,13 +35,15 @@ transform/pos = Vector2( 42.1487, 157.246 )
 "rocket_group",
 ] instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 74.57, 65.9242 )
+transform/pos = Vector2( 216.294, 368.92 )
+mode = 1
 
 [node name="Yeezy-01" parent="." groups=[
 "rocket_group",
 ] instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 56.7379, 254.51 )
+mode = 1
 
 [node name="Button" type="Button" parent="."]
 
