@@ -6,6 +6,16 @@ var is_touched = false
 # Is the part being held?
 var is_held = false
 
+# Save the node positions.
+func save():
+	var savedict = {
+		filename=get_filename(),
+		parent=get_parent().get_path(),
+		posx=get_pos().x,
+		posy=get_pos().y
+	}
+	return savedict
+
 # Callback when mouse pointer enters the part.
 func _on_mouse_enter():
 	is_touched = true

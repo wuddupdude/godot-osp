@@ -25,6 +25,9 @@ func _on_area_enter_shape(area_id, area, area_shape, self_shape):
 		get_parent().translate(snap_vector)
 		# Turn off mouse holding.
 		get_parent().is_held = false
+		#
+		# Add to Rocket Group (Testing feature).
+		# add_to_group("rocket_group")
 
 # Callback whenever a node contacts a part's body.
 # Duplicates part and attaches it to both side of the other part.
@@ -50,16 +53,20 @@ func _on_body_enter_shape(body_id, body, body_shape, area_shape):
 		var root_node = get_node("../../../Node")
 		var duplicate = load("res://parts/x-wing/X-Wing.tscn").instance()
 		root_node.add_child(duplicate)
+		# flip the wing.
 		duplicate.set_scale(Vector2(-1, 1))
 		duplicate.set_pos(get_global_pos())
-		duplicate.translate(Vector2(-22, 0))
-		duplicate.translate(Vector2(-2 * get_rightmost_x_coord(body, body_shape), 0))
+		# width of the rocket/engine.
+		duplicate.translate(Vector2(-22, 0)) # px
+		# width of the wing.
+		duplicate.translate(Vector2(-2 * get_rightmost_x_coord(body, body_shape), 0)) # px
 		#
 		#
 		# Turn off mouse holding
 		get_parent().is_held = false
-		# print(get_rightmost_x_coord(body, body_shape))
-		# print(body.get_shape(body_shape).get_points())
+		#
+		# Add to Rocket Group (Testing feature).
+		# add_to_group("rocket_group")
 
 func _ready():
 	connect("area_enter_shape", self, "_on_area_enter_shape")

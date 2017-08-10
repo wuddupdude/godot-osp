@@ -3,6 +3,7 @@ extends Node
 func save_game():
 	var savegame = File.new()
 	savegame.open("user://savegame.save", File.WRITE)
+	print(get_tree().get_nodes_in_group("rocket_group"))
 	var savenodes = get_tree().get_nodes_in_group("rocket_group")
 	for i in savenodes:
 		var nodedata = i.save()

@@ -34,5 +34,5 @@ func load_game():
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
-	#load_game()
-	pass
+	load_game()
+	# pass

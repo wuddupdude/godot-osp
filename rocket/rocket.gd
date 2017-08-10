@@ -108,7 +108,6 @@ func _ready():
 	set_fixed_process(true)
 
 func _fixed_process(delta):
-	print(get_colliding_bodies())
 	handleThrottleInput(delta)
 	ignite(delta)
 	yaw(delta)
